@@ -24,6 +24,12 @@
 
     <script src='https://cdn.tiny.cloud/1/no-api-key/tinymce/4/tinymce.min.js'></script>
 
+    <style>
+        svg{
+            width: 20px;
+        }
+    </style>
+
 
 </head>
 

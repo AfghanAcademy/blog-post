@@ -26,9 +26,8 @@
                     <tbody>
                         @foreach($posts as $index=>$post)
                             <tr>
-                                <td>
-                                    {{++$index}}
-                                </td>
+                                <!-- <td>{{ ($posts->currentPage()*10)-10 + $index+1}}</td> -->
+                                <td>{{($posts->currentPage()*10)-10 + $index+1}}</td>
                                 <td>
                                     {{$post->title}}
                                 </td>
@@ -44,6 +43,9 @@
                         @endforeach
                     </tbody>
                 </table>
+                <tfoot>
+                    {{$posts->links()}}
+                </tfoot>
             </div>
             </div>
 
