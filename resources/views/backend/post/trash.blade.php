@@ -9,10 +9,7 @@
             <div class="card">
             <h5 class="card-header">
                 Posts
-                <a href="{{route('post.create')}}" class="btn btn-success float-right">Add Post</a>
-                <br>
-                <br>
-                <a href="{{route('post.trash')}}" class="btn btn-danger float-right">Tresh</a>
+                
             </h5>
 
 
@@ -39,7 +36,7 @@
                                 </td>
                                 <td>
                                     <a href="#" class="delete" id="{{$post->id}}"><i class="fa fa-trash"></i></a>|
-                                    <a href="{{route('post.edit',['post'=>$post->id])}}"><i class="fa fa-edit"></i></a>
+                                    <a href="{{route('post.restore',['id'=>$post->id])}}">Restore</a>
                                 </td>
 
                             </tr>
@@ -72,7 +69,7 @@
         if (result.isConfirmed) {
 
             var id = $(this).attr('id');
-            var url = 'post/'+id;
+            var url = 'fore-delete/'+id;
 
             $.ajax
             ({
