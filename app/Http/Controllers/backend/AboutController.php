@@ -11,8 +11,6 @@ use Illuminate\Support\Facades\DB;
 class AboutController extends Controller
 {
     public function index(){
-        $posts = Post::where('id',3)->update(['title'=>'demo','sub_title'=>'demo','description'=>'demo','slug'=>'demo']);
-
-        return $posts;
+        
     }
 }
