@@ -58,11 +58,17 @@
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
-
+            
             <li class="nav-item">
                 <a class="nav-link" href="{{route('post.index')}}">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Post</span></a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="{{route('about.index')}}">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>About</span></a>
             </li>
 
             <!-- Divider -->
