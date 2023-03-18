@@ -11,7 +11,7 @@ class HomeController extends Controller
     public function index(){
         
         return view('frontend.home.index')
-                    ->with('posts',Post::orderBy('created_at','DESC')->paginate(5));
+                    ->with('posts',Post::orderBy('created_at','DESC')->where('lang',app()->getLocale())->paginate(5));
     }
 
 

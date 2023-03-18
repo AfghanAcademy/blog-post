@@ -72,6 +72,11 @@
             </li>
 
             <li class="nav-item">
+                <a class="nav-link" href="{{route('users.index')}}">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Users</span></a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" href="{{route('setting.index')}}">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Setting</span></a>

@@ -11,5 +11,14 @@ class Post extends Model
     use HasFactory;
     use SoftDeletes;
 
-    protected $fillable = ['title','sub_title','description','slug'];
+    protected $fillable = ['title','sub_title','description','slug','lang','profile_id'];
+
+
+    public function profile(){
+        return $this->belongsTo(Profile::class);
+    }
+
+    public function topics(){
+        return $this->belongsToMany(Topic::class,'posts_topics');
+    }
 }

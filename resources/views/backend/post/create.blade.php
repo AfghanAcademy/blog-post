@@ -33,6 +33,13 @@
                             <p class="text-danger">{{$message}}</p>
                         @enderror
                     </div>
+                    <div class="form-group">
+                        <label for="description">Topics:</label><br>
+                       @foreach($topics as $topic)
+                            {{ $topic->title }}
+                            <input type="checkbox" value="{{$topic->id}}" class="mr-2" name="topic[]">
+                       @endforeach
+                    </div>
 
                     <button type="submit" class="btn btn-success">Save</button>
                     

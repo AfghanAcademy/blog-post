@@ -8,11 +8,10 @@
 
             <div class="card">
             <h5 class="card-header">
-                Posts
-                <a href="{{route('post.create')}}" class="btn btn-success float-right">Add Post</a>
+                Users
+                <a href="{{route('users.create')}}" class="btn btn-success float-right">Create User</a>
                 <br>
-                <br>
-                <a href="{{route('post.trash')}}" class="btn btn-danger float-right">Tresh</a>
+                
             </h5>
 
 
@@ -21,29 +20,29 @@
                     <thead>
                         <tr>
                             <th>No</th>
-                            <th>Title</th>
-                            <th>SubTitle</th>
-                            <th>Auther</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Image</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($posts as $index=>$post)
+                        @foreach($users as $index=>$user)
                             <tr>
-                                <!-- <td>{{ ($posts->currentPage()*10)-10 + $index+1}}</td> -->
-                                <td>{{($posts->currentPage()*10)-10 + $index+1}}</td>
+                                
+                                <td>{{($users->currentPage()*10)-10 + $index+1}}</td>
                                 <td>
-                                    {{$post->title}}
+                                    {{$user->name}}
                                 </td>
                                 <td>
-                                    {{$post->sub_title}}
+                                    {{$user->email}}
                                 </td>
                                 <td>
-                                    {{$post->profile->user->name}}
+                                   {{$user->profile->profile_pic}}
                                 </td>
                                 <td>
-                                    <a href="#" class="delete" id="{{$post->id}}"><i class="fa fa-trash"></i></a>|
-                                    <a href="{{route('post.edit',['post'=>$post->id])}}"><i class="fa fa-edit"></i></a>
+                                    <a href="#" class="delete" id="{{$user->id}}"><i class="fa fa-trash"></i></a>|
+                                    <a href="{{route('users.edit',['user'=>$user->id])}}"><i class="fa fa-edit"></i></a>
                                 </td>
 
                             </tr>
@@ -51,7 +50,7 @@
                     </tbody>
                 </table>
                 <tfoot>
-                    {{$posts->links()}}
+                    {{$users->links()}}
                 </tfoot>
             </div>
             </div>
@@ -76,7 +75,7 @@
         if (result.isConfirmed) {
 
             var id = $(this).attr('id');
-            var url = 'post/'+id;
+            var url = 'users/'+id;
 
             $.ajax
             ({

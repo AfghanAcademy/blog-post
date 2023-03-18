@@ -4,10 +4,15 @@ use App\Http\Controllers\AboutController as FrontendAboutController;
 use App\Http\Controllers\backend\AboutController;
 use App\Http\Controllers\backend\PostController;
 use App\Http\Controllers\backend\SettingController;
+use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Middleware\SettingMiddleware;
+use App\Models\Post;
+use App\Models\Profile;
+use App\Models\Topic;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -32,29 +37,16 @@ Route::get('/contact',[ContactController::class,'index'])->name('contact');
 
 Route::post('/contact',[ContactController::class,'send'])->name('send');
 
+Route::get('/test',function(){
+    return Post::find(16)->images;
+});
+
 
 Route::get('/locale/{locale}',function($locale){
         app()->setlocale($locale);
         Session()->put('locale',$locale);
         return redirect()->back();
 })->name('locale');
-
-
-
-
-
-
-
-
-
-// Route::get('/language/{locale}', function ($locale) {
-//     app()->setLocale($locale);
-//     session()->put('locale', $locale);
-//     return redirect()->route('home');
-    
-// })->name('locale');
-
-
 
 Route::middleware('auth')->group(function(){
 
@@ -74,6 +66,8 @@ Route::middleware('auth')->group(function(){
 
     Route::get('setting',[SettingController::class,'index'])->name('setting.index');
     Route::post('setting',[SettingController::class,'store'])->name('setting.store');
+
+    Route::resource('users',UserController::class);
 
 
 });

@@ -5,6 +5,8 @@ namespace App\Http\Controllers\backend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Post;
+use App\Models\Topic;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Str;
 class PostController extends Controller
@@ -16,8 +18,9 @@ class PostController extends Controller
      */
     public function index()
     {
+        
         return view('backend.post.index')
-                    ->with('posts',Post::paginate(10));
+                    ->with('posts',Post::where('lang',app()->getLocale())->paginate(10));
     }
 
     /**
@@ -27,7 +30,8 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('backend.post.create');
+        return view('backend.post.create')
+                    ->with('topics',Topic::all());
     }
 
     /**
@@ -38,13 +42,19 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+        
         $request->validate([
             'title'=>'required|max:50',
             'sub_title'=>'required|max:50',
-            'description'=>'required'
+            'description'=>'required',
+            'topic'=>'required|array'
         ]);
+        
+       $post = Post::create(['title'=>$request->title,'sub_title'=>$request->sub_title,'description'=>$request->description,'slug'=>Str::slug($request->title),'lang'=>app()->getLocale(),'profile_id'=>Auth::user()->profile->id]);
 
-        Post::create(['title'=>$request->title,'sub_title'=>$request->sub_title,'description'=>$request->description,'slug'=>Str::slug($request->title)]);
+       $post->topics()->attach($request->topic);
+        
+
 
         Session::flash('success','Create Successfully');
       
@@ -71,7 +81,8 @@ class PostController extends Controller
     public function edit(Post $post)
     {
         return view('backend.post.edit')
-                    ->with('post',$post);
+                    ->with('post',$post)
+                    ->with('topics',Topic::all());
     }
 
     /**
@@ -86,7 +97,8 @@ class PostController extends Controller
         $request->validate([
             'title'=>'required|max:50',
             'sub_title'=>'required|max:50',
-            'description'=>'required'
+            'description'=>'required',
+            'topic'=>'required|array'
         ]);
 
         $post->title = $request->title;
@@ -94,6 +106,9 @@ class PostController extends Controller
         $post->description = $request->description;
         $post->slug = Str::slug($request->title);
         $post->save();
+
+        $post->topics()->sync($request->topic);
+
 
         Session::flash('success','Update Successfully');
         return redirect()->route('post.index');
