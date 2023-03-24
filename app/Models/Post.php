@@ -21,4 +21,11 @@ class Post extends Model
     public function topics(){
         return $this->belongsToMany(Topic::class,'posts_topics');
     }
+
+    public function images(){
+        // One to Many
+        return $this->morphMany(Image::class,'imageable');
+    }
+
+
 }

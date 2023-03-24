@@ -11,6 +11,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Middleware\SettingMiddleware;
 use App\Models\Post;
 use App\Models\Profile;
+use App\Models\Setting;
 use App\Models\Topic;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
@@ -38,7 +39,8 @@ Route::get('/contact',[ContactController::class,'index'])->name('contact');
 Route::post('/contact',[ContactController::class,'send'])->name('send');
 
 Route::get('/test',function(){
-    return Post::find(16)->images;
+ 
+   dd(Post::find(17)->images);
 });
 
 

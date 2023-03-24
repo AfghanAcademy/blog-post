@@ -54,6 +54,9 @@ class PostController extends Controller
 
        $post->topics()->attach($request->topic);
         
+       foreach($request->image as $image){
+        $post->images()->create(['image'=>$image]);
+       }
 
 
         Session::flash('success','Create Successfully');
