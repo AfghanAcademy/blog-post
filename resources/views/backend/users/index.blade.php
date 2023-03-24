@@ -23,6 +23,7 @@
                             <th>Name</th>
                             <th>Email</th>
                             <th>Image</th>
+                            <th>Role</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -37,8 +38,12 @@
                                 <td>
                                     {{$user->email}}
                                 </td>
+                               
                                 <td>
                                    {{$user->profile->profile_pic}}
+                                </td>
+                                <td>
+                                    {{$user->user_role}}
                                 </td>
                                 <td>
                                     <a href="#" class="delete" id="{{$user->id}}"><i class="fa fa-trash"></i></a>|

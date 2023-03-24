@@ -14,6 +14,7 @@ use App\Models\Profile;
 use App\Models\Setting;
 use App\Models\Topic;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -39,8 +40,9 @@ Route::get('/contact',[ContactController::class,'index'])->name('contact');
 Route::post('/contact',[ContactController::class,'send'])->name('send');
 
 Route::get('/test',function(){
- 
-   dd(Post::find(17)->images);
+    
+
+
 });
 
 
@@ -66,10 +68,10 @@ Route::middleware('auth')->group(function(){
     Route::post('admin/about',[AboutController::class,'store'])->name('about.store');
 
 
-    Route::get('setting',[SettingController::class,'index'])->name('setting.index');
-    Route::post('setting',[SettingController::class,'store'])->name('setting.store');
+    Route::get('setting',[SettingController::class,'index'])->name('setting.index')->middleware('can:isAdmin');
+    Route::post('setting',[SettingController::class,'store'])->name('setting.store')->middleware('can:isAdmin');
 
-    Route::resource('users',UserController::class);
+    Route::resource('users',UserController::class)->middleware('can:isAdmin');
 
 
 });

@@ -39,6 +39,18 @@
                             <p class="text-danger">{{$message}}</p>
                         @enderror
                     </div>
+
+                    <div class="form-group">
+                        <label for="confrim">User Role</label>
+                        <select name="user_role" id="" class="form-control">
+                            <option value="Admin">Admin</option>
+                            <option value="Editor">Editor</option>
+                        </select>
+                        @error('confrim_password')
+                            <p class="text-danger">{{$message}}</p>
+                        @enderror
+                    </div>
+
                     <div class="form-group">
                     <label for="title">Profile pic</label>
                     <div class="input-group">
