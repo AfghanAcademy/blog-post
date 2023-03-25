@@ -126,12 +126,13 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
+        $this->authorize('delete',$post);
         $post->delete();
         return "success";
     }
 
     public function trash(){
-       
+       $this->authorize('forceDelete',Post::class);
         return view('backend.post.trash')
                     ->with('posts',Post::onlyTrashed()->paginate(10));
     }
@@ -143,6 +144,7 @@ class PostController extends Controller
     }
 
     public function restore($id){
+        $this->authorize('restore');
         $post = Post::withTrashed()->where('id',$id)->first();
         $post->restore();
 
