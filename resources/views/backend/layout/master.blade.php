@@ -69,20 +69,19 @@
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>About</span></a>
             </li>
-            @can('isAdmin')
+            
             <li class="nav-item">
                 <a class="nav-link" href="{{route('users.index')}}">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Users</span></a>
             </li>
-            @endcan
-            @can('isAdmin')
+            
             <li class="nav-item">
                 <a class="nav-link" href="{{route('setting.index')}}">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Setting</span></a>
             </li>
-            @endcan
+        
             <!-- Divider -->
             <hr class="sidebar-divider">
 

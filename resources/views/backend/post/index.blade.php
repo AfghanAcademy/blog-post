@@ -12,9 +12,7 @@
                 <a href="{{route('post.create')}}" class="btn btn-success float-right">Add Post</a>
                 <br>
                 <br>
-                @can('forceDelete', App\Models\Post::class)
                 <a href="{{route('post.trash')}}" class="btn btn-danger float-right">Tresh</a>
-                @endcan
             </h5>
 
 
@@ -44,9 +42,7 @@
                                     {{$post->profile->user->name}}
                                 </td>
                                 <td>
-                                    @can('delete',$post)
                                     <a href="#" class="delete" id="{{$post->id}}"><i class="fa fa-trash"></i></a>|
-                                    @endcan
                                     <a href="{{route('post.edit',['post'=>$post->id])}}"><i class="fa fa-edit"></i></a>
                                 </td>
 
