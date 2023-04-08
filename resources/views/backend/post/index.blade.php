@@ -8,11 +8,15 @@
 
             <div class="card">
             <h5 class="card-header">
+                @if(auth()->user()->role->hasPermission('post create'))
                 Posts
                 <a href="{{route('post.create')}}" class="btn btn-success float-right">Add Post</a>
+                @endif
                 <br>
                 <br>
+                @if(auth()->user()->role->hasPermission('post delete'))
                 <a href="{{route('post.trash')}}" class="btn btn-danger float-right">Tresh</a>
+                @endif
             </h5>
 
 
@@ -42,8 +46,12 @@
                                     {{$post->profile->user->name}}
                                 </td>
                                 <td>
+                                @if(auth()->user()->role->hasPermission('post delete'))
                                     <a href="#" class="delete" id="{{$post->id}}"><i class="fa fa-trash"></i></a>|
+                                    @endif
+                                    @if(auth()->user()->role->hasPermission('post update'))
                                     <a href="{{route('post.edit',['post'=>$post->id])}}"><i class="fa fa-edit"></i></a>
+                                    @endif
                                 </td>
 
                             </tr>

@@ -3,6 +3,7 @@
 use App\Http\Controllers\AboutController as FrontendAboutController;
 use App\Http\Controllers\backend\AboutController;
 use App\Http\Controllers\backend\PostController;
+use App\Http\Controllers\backend\RoleController;
 use App\Http\Controllers\backend\SettingController;
 use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\ContactController;
@@ -59,7 +60,7 @@ Route::middleware('auth')->group(function(){
     })->name('dashboard');
 
 
-    Route::resource('post',PostController::class);
+    Route::resource('post',PostController::class)->middleware('permission:post view');
     Route::get("trash",[PostController::class,'trash'])->name('post.trash');
     Route::delete('fore-delete/{id}',[PostController::class,'delete'])->name('post.force-delete');
     Route::get('restore/{id}',[PostController::class,'restore'])->name('post.restore');
@@ -71,7 +72,9 @@ Route::middleware('auth')->group(function(){
     Route::get('setting',[SettingController::class,'index'])->name('setting.index');
     Route::post('setting',[SettingController::class,'store'])->name('setting.store');
 
-    Route::resource('users',UserController::class);
+    Route::resource('users',UserController::class)->middleware('permission:user view');
+
+    Route::resource('role',RoleController::class);
 
 
 });

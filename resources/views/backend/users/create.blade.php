@@ -43,8 +43,9 @@
                     <div class="form-group">
                         <label for="confrim">User Role</label>
                         <select name="user_role" id="" class="form-control">
-                            <option value="Admin">Admin</option>
-                            <option value="Editor">Editor</option>
+                            @foreach($roles as $role)
+                            <option value="{{$role->id}}">{{$role->name}}</option>
+                            @endforeach
                         </select>
                         @error('confrim_password')
                             <p class="text-danger">{{$message}}</p>

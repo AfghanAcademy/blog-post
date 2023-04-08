@@ -58,28 +58,34 @@
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
-            
+            @if(auth()->user()->role->hasPermission('post view'))
             <li class="nav-item">
                 <a class="nav-link" href="{{route('post.index')}}">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Post</span></a>
             </li>
+            @endif
             <li class="nav-item">
                 <a class="nav-link" href="{{route('about.index')}}">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>About</span></a>
             </li>
-            
+            @if(auth()->user()->role->hasPermission('user view'))
             <li class="nav-item">
                 <a class="nav-link" href="{{route('users.index')}}">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Users</span></a>
             </li>
-            
+            @endif
             <li class="nav-item">
                 <a class="nav-link" href="{{route('setting.index')}}">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Setting</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{route('role.index')}}">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Role</span></a>
             </li>
         
             <!-- Divider -->

@@ -8,9 +8,9 @@
 
             <div class="card">
             <h5 class="card-header">
-                Users
-                <a href="{{route('users.create')}}" class="btn btn-success float-right">Create User</a>
-                <br>
+                Roles
+                <a href="{{route('role.create')}}" class="btn btn-success float-right">Add role</a>
+                
                 
             </h5>
 
@@ -21,33 +21,24 @@
                         <tr>
                             <th>No</th>
                             <th>Name</th>
-                            <th>Email</th>
-                            <th>Image</th>
-                            <th>Role</th>
+                            
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($users as $index=>$user)
+                        @foreach($roles as $index=>$role)
                             <tr>
+                                <!-- <td>{{ ($roles->currentPage()*10)-10 + $index+1}}</td> -->
+                                <td>{{($roles->currentPage()*10)-10 + $index+1}}</td>
+                                <td>
+                                    {{$role->name}}
+                                </td>
                                 
-                                <td>{{($users->currentPage()*10)-10 + $index+1}}</td>
                                 <td>
-                                    {{$user->name}}
-                                </td>
-                                <td>
-                                    {{$user->email}}
-                                </td>
-                               
-                                <td>
-                                   {{$user->profile->profile_pic}}
-                                </td>
-                                <td>
-                                    {{$user->role->name}}
-                                </td>
-                                <td>
-                                    <a href="#" class="delete" id="{{$user->id}}"><i class="fa fa-trash"></i></a>|
-                                    <a href="{{route('users.edit',['user'=>$user->id])}}"><i class="fa fa-edit"></i></a>
+                                    <a href="#" class="delete" id="{{$role->id}}"><i class="fa fa-trash"></i></a>|
+                                    <a href="{{route('role.edit',['role'=>$role->id])}}"><i class="fa fa-edit"></i>|
+                                    <a href="{{route('role.show',['role'=>$role->id])}}"><i class="fa fa-lock"></i></a>
+                                </a>
                                 </td>
 
                             </tr>
@@ -55,7 +46,7 @@
                     </tbody>
                 </table>
                 <tfoot>
-                    {{$users->links()}}
+                    {{$roles->links()}}
                 </tfoot>
             </div>
             </div>
@@ -80,7 +71,7 @@
         if (result.isConfirmed) {
 
             var id = $(this).attr('id');
-            var url = 'users/'+id;
+            var url = 'role/'+id;
 
             $.ajax
             ({
@@ -124,7 +115,7 @@
 
 
 <!-- var id = $(this).attr('id');
-var url = 'post'+'/'+id;
+var url = 'role'+'/'+id;
 $.ajax
 ({
     headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},

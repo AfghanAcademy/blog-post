@@ -12,6 +12,14 @@ use Illuminate\Support\Facades\Session;
 use Str;
 class PostController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:post update',['only'=>['edit','update']]);
+        $this->middleware('permission:post view',['only'=>['index','show']]);
+        $this->middleware('permission:post create',['only'=>['create','store']]);
+        $this->middleware('permission:post delete',['only'=>['destroy','trash','delete','restore']]);
+
+    }
     /**
      * Display a listing of the resource.
      *
